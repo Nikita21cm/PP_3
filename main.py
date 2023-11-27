@@ -1,24 +1,12 @@
-def is_binary_string(s):
-    return all(char in '01' for char in s)
-
-
-def is_multiple_of_three(binary_str):
-    decimal = int(binary_str, 2)
-    return decimal % 3 == 0
-
-
+import re
 def get_binary_strings():
     while True:
         user_input = input("Введите строку (для завершения введите 'q'): ")
         if user_input.lower() == 'q':
             break
-
-        if not is_binary_string(user_input):
+        if not re.fullmatch(r'[01]*', user_input): # checks if the input string is a binary string
             print("Ошибка¯\_(ツ)_/¯: Неверный ввод. Введите строку без пробелов, содержащую только символы '0' и '1'.")
             continue
-
-        if is_multiple_of_three(user_input):
+        if int(user_input, 2) % 3 == 0: # checks if the binary number is a multiple of three
             print(f"Строка '{user_input}' содержит двоичную запись числа, кратного 3.")
-
-
 get_binary_strings()
